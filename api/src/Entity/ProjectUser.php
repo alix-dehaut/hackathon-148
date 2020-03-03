@@ -39,8 +39,6 @@ class ProjectUser
 
     public function __construct()
     {
-        $this->user_id = new ArrayCollection();
-        $this->project_id = new ArrayCollection();
     }
 
     public function getId(): ?int
