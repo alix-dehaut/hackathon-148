@@ -36,12 +36,6 @@ class Project
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProjectUser", inversedBy="project_id")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $projectUser;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="projects")
      */
     private $tags;
@@ -59,7 +53,6 @@ class Project
 
     public function __construct()
     {
-        $this->creator_id = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->projectUsers = new ArrayCollection();
     }
@@ -101,18 +94,6 @@ class Project
     public function setStatus(string $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getProjectUser(): ?ProjectUser
-    {
-        return $this->projectUser;
-    }
-
-    public function setProjectUser(?ProjectUser $projectUser): self
-    {
-        $this->projectUser = $projectUser;
 
         return $this;
     }

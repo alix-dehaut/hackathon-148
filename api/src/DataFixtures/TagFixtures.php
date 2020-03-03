@@ -12,6 +12,7 @@ use Faker\Factory;
 
 class TagFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const ARBITRARY_NBR_TAG = 10;
     public const PREFIX_TAG_NAME = "Tag-";
     private $tags = ['php','Javascript','Symfony', 'Laravel', 'Wordpress', 'React', 'Angular', 'Designer', 'Marketer', 'Developer'];
 

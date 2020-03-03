@@ -21,7 +21,7 @@ stop:
 	docker-compose down --remove-orphans --volumes
 
 fixtures: ## Launch fixtures
-	docker-compose exec web bash -c "php bin/console doctrine:fixture:load -n"
+	docker-compose exec php bin/console doctrine:fixture:load -n
 
 update:
 	docker-compose exec php bin/console doctrine:schema:update --force
