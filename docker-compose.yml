@@ -136,6 +136,18 @@ services:
         published: 80
         protocol: tcp
 
+  front:
+    image: 'node:latest'
+    working_dir: /usr/src/app
+    env_file: ./front/.env
+    volumes:
+        - './front:/usr/src/app'
+    ports:
+        - "4200:4200"
+    command:
+        - /bin/sh
+        - '-c'
+        - 'npm install && ./node_modules/.bin/ng serve --host 0.0.0.0'
 volumes:
   db-data: {}
   dev-certs: {}
