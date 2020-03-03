@@ -69,6 +69,14 @@ services:
       - target: 5432
         published: 5432
         protocol: tcp
+        
+  adminer:
+    image: adminer
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8081:8080
 
   mercure:
     image: dunglas/mercure
