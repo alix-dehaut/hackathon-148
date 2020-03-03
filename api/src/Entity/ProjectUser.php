@@ -21,19 +21,21 @@ class ProjectUser
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="projectUser")
-     */
-    private $user_id;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="projectUser")
-     */
-    private $project_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="projectUsers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projectUsers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agent;
 
     public function __construct()
     {
@@ -46,68 +48,6 @@ class ProjectUser
         return $this->id;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
-    {
-        return $this->user_id;
-    }
-
-    public function addUserId(User $userId): self
-    {
-        if (!$this->user_id->contains($userId)) {
-            $this->user_id[] = $userId;
-            $userId->setProjectUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(User $userId): self
-    {
-        if ($this->user_id->contains($userId)) {
-            $this->user_id->removeElement($userId);
-            // set the owning side to null (unless already changed)
-            if ($userId->getProjectUser() === $this) {
-                $userId->setProjectUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Project[]
-     */
-    public function getProjectId(): Collection
-    {
-        return $this->project_id;
-    }
-
-    public function addProjectId(Project $projectId): self
-    {
-        if (!$this->project_id->contains($projectId)) {
-            $this->project_id[] = $projectId;
-            $projectId->setProjectUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProjectId(Project $projectId): self
-    {
-        if ($this->project_id->contains($projectId)) {
-            $this->project_id->removeElement($projectId);
-            // set the owning side to null (unless already changed)
-            if ($projectId->getProjectUser() === $this) {
-                $projectId->setProjectUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -116,6 +56,30 @@ class ProjectUser
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    public function getAgent(): ?User
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(?User $agent): self
+    {
+        $this->agent = $agent;
 
         return $this;
     }

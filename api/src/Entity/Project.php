@@ -26,7 +26,7 @@ class Project
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private $description;
 
@@ -34,11 +34,6 @@ class Project
      * @ORM\Column(type="string", length=255)
      */
     private $status;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="project")
-     */
-    private $creator_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ProjectUser", inversedBy="project_id")
@@ -51,10 +46,22 @@ class Project
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $publisher;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="project")
+     */
+    private $projectUsers;
+
     public function __construct()
     {
         $this->creator_id = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->projectUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,37 +105,6 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getCreatorId(): Collection
-    {
-        return $this->creator_id;
-    }
-
-    public function addCreatorId(User $creatorId): self
-    {
-        if (!$this->creator_id->contains($creatorId)) {
-            $this->creator_id[] = $creatorId;
-            $creatorId->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCreatorId(User $creatorId): self
-    {
-        if ($this->creator_id->contains($creatorId)) {
-            $this->creator_id->removeElement($creatorId);
-            // set the owning side to null (unless already changed)
-            if ($creatorId->getProject() === $this) {
-                $creatorId->setProject(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getProjectUser(): ?ProjectUser
     {
         return $this->projectUser;
@@ -137,6 +113,18 @@ class Project
     public function setProjectUser(?ProjectUser $projectUser): self
     {
         $this->projectUser = $projectUser;
+
+        return $this;
+    }
+
+    public function getPublisher(): ?User
+    {
+        return $this->publisher;
+    }
+
+    public function setPublisher(?User $publisher): self
+    {
+        $this->publisher = $publisher;
 
         return $this;
     }
@@ -162,6 +150,37 @@ class Project
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjectUser[]
+     */
+    public function getProjectUsers(): Collection
+    {
+        return $this->projectUsers;
+    }
+
+    public function addProjectUser(ProjectUser $projectUser): self
+    {
+        if (!$this->projectUsers->contains($projectUser)) {
+            $this->projectUsers[] = $projectUser;
+            $projectUser->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectUser(ProjectUser $projectUser): self
+    {
+        if ($this->projectUsers->contains($projectUser)) {
+            $this->projectUsers->removeElement($projectUser);
+            // set the owning side to null (unless already changed)
+            if ($projectUser->getProject() === $this) {
+                $projectUser->setProject(null);
+            }
         }
 
         return $this;

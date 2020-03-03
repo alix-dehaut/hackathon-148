@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -33,6 +35,22 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="publisher")
+     */
+    private $projects;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="agent")
+     */
+    private $projectUsers;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+        $this->projectUsers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,4 +129,67 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setPublisher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
+            // set the owning side to null (unless already changed)
+            if ($project->getPublisher() === $this) {
+                $project->setPublisher(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjectUser[]
+     */
+    public function getProjectUsers(): Collection
+    {
+        return $this->projectUsers;
+    }
+
+    public function addProjectUser(ProjectUser $projectUser): self
+    {
+        if (!$this->projectUsers->contains($projectUser)) {
+            $this->projectUsers[] = $projectUser;
+            $projectUser->setAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectUser(ProjectUser $projectUser): self
+    {
+        if ($this->projectUsers->contains($projectUser)) {
+            $this->projectUsers->removeElement($projectUser);
+            // set the owning side to null (unless already changed)
+            if ($projectUser->getAgent() === $this) {
+                $projectUser->setAgent(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
