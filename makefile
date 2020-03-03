@@ -1,5 +1,5 @@
 DOCKER_COMPOSE_RUN=docker-compose run --rm --no-deps
-DOCKER_COMPOSE_UP=docker-compose up --rm --no-deps --detach
+DOCKER_COMPOSE_UP=docker-compose up --detach
 
 ##
 ## Setup
@@ -14,7 +14,7 @@ start-dev: start fixtures ## Make install with developer fixtures
 # 	$(DOCKER_COMPOSE_RUN) composer install
 # 	# $(DOCKER_COMPOSE_RUN) npm install
 
-up:
+start:
 	$(DOCKER_COMPOSE_UP)
 
 stop:
