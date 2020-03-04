@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ProjectUser
 {
+
+    const STATUS = ['ONGOING','DONE'];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

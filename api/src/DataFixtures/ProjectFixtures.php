@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -24,17 +23,13 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project = new Project();
             $project->setName($faker->sentence(3));
             $project->setDescription($faker->paragraph(10));
-            $project->setStatus($faker->randomElement($this->status));
+            $project->setStatus($faker->randomElement(Project::STATUS));
             $project->setPublisher($this->getReference(sprintf(
                 '%s%d',
                 UserFixtures::PREFIX_USER_NAME,
                 $faker->numberBetween(0, UserFixtures::ARBITRARY_NBR_USER - 1)
             )));
-//            $project->addTag($this->getReference(sprintf(
-//                '%s%d',
-//                TagFixtures::PREFIX_TAG_NAME,
-//                $faker->numberBetween(0, TagFixtures::ARBITRARY_NBR_TAG - 1)
-//            )));
+
             $this->addReference(self::PREFIX_PROJECT_NAME.$i, $project);
 
             $manager->persist($project);
