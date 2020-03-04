@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/User.interface';
-import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,8 @@ export class UserService {
   }
 
   editUser(user: User) {
-    return this.http.patch<User>(`${this.baseUrl}/users/${user.userId}`, {...user});
+    const headers = new HttpHeaders().set('Content-Type', 'application/merge-patch+json');
+    return this.http.patch<User>(`${this.baseUrl}/users/${user.id}`, user, {headers});
   }
 
   deleteUser(id: number) {
