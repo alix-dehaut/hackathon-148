@@ -1,1 +1,32 @@
-<p>login works!</p>
+<mat-card>
+  <mat-card-header>
+    Connexion
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <hr>
+      <mat-form-field>
+        <mat-label>Email :</mat-label>
+        <input matInput type="email" [formControl]="emailControl" email required>
+        <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+          L'email n'est pas valide
+        </mat-error>
+        <mat-error *ngIf="emailControl.hasError('required')">
+          L'email est obligatoire
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" [formControl]="passwordControl" required minlength="6">
+        <mat-error *ngIf="passwordControl.hasError('minlength')">
+          Le mot de passe doit faire au minimum 6 caractères
+        </mat-error>
+        <mat-error *ngIf="passwordControl.hasError('required')">
+          Le mot de passe est obligatoire
+        </mat-error>
+      </mat-form-field>
+      <hr>
+      <button mat-raised-button color="primary" type="submit">Connexion</button>
+    </form>
+  </mat-card-content>
+</mat-card>
