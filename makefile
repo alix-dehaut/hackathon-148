@@ -24,7 +24,7 @@ fixtures: ## Launch fixtures
 	docker-compose exec php bin/console doctrine:fixture:load -n
 
 update:
-	docker-compose exec php bin/console doctrine:schema:update --force
+	docker-compose exec php bin/console doctrine:schema:update --force --dump-sql
 
 migrations:
 	docker-compose exec php bin/console make:migration

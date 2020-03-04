@@ -7,6 +7,7 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
@@ -21,6 +22,8 @@ class UserFixtures extends Fixture
         $faker = Factory::create();
         for ($i = 0; $i < self::ARBITRARY_NBR_USER; $i++) {
             $user = new User();
+            $user->setFirstname($faker->firstName);
+            $user->setLastname($faker->lastName);
             $user->setEmail($faker->email);
             $user->setPlainPassword('password');
             $user->setRoles($faker->randomElements($this->roles, $count=1));
@@ -32,4 +35,5 @@ class UserFixtures extends Fixture
 
         $manager->flush();
     }
+
 }

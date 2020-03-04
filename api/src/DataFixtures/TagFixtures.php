@@ -19,7 +19,7 @@ class TagFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
-        for ($i = 0; $i < count($this->tags); $i++) {
+        for ($i = 0; $i < self::ARBITRARY_NBR_TAG; $i++) {
             $tag = new Tag();
             $label = $faker->randomElement($this->tags);
             $tag->setLabel($label);
@@ -29,6 +29,11 @@ class TagFixtures extends Fixture implements DependentFixtureInterface
                     ProjectFixtures::PREFIX_PROJECT_NAME,
                     $faker->numberBetween(0, ProjectFixtures::ARBITRARY_NBR_PROJECT - 1)
                 )));
+            $tag->addUser($this->getReference(sprintf(
+                '%s%d',
+                UserFixtures::PREFIX_USER_NAME,
+                $faker->numberBetween(0, UserFixtures::ARBITRARY_NBR_USER - 1)
+            )));
 
             $this->addReference(self::PREFIX_TAG_NAME.$i, $tag);
 
@@ -42,6 +47,7 @@ class TagFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             ProjectFixtures::class,
+            UserFixtures::class
         ];
     }
 
