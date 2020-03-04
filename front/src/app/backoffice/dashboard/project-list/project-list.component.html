@@ -3,5 +3,8 @@
     <mat-card-header>
       {{project.name}}
     </mat-card-header>
+    <mat-card-content>
+      <pre>{{project | json}}</pre>
+    </mat-card-content>
   </mat-card>
 </ng-container>
