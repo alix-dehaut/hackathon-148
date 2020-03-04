@@ -39,3 +39,5 @@ cc: ## Clear cache
 
 cs: ## Executes php cs fixer
 	docker-compose exec web bash -c "vendor/bin/php-cs-fixer --no-interaction --diff -v fix"
+entity:
+	docker-compose exec php bin/console make:entity --api-resource
