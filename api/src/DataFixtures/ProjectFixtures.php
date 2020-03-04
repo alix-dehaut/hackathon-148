@@ -22,7 +22,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::ARBITRARY_NBR_PROJECT; $i++) {
             $project = new Project();
             $project->setName($faker->sentence(3));
-            $project->setDescription($faker->paragraph(10));
+            $project->setDescription($faker->paragraph(2));
             $project->setStatus($faker->randomElement(Project::STATUS));
             $project->setPublisher($this->getReference(sprintf(
                 '%s%d',
