@@ -43,12 +43,13 @@ class Project
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $publisher;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="project")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $projectUsers;
 
