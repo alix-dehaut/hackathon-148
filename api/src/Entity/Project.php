@@ -8,9 +8,13 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"project_get"}},
+ *     denormalizationContext={"groups"={"project_write"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
  */
 class Project
@@ -25,28 +29,33 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"project_get", "project_write"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string")
+     * @Groups({"project_get", "project_write"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"project_get", "project_write"})
      */
     private $status;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="projects")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"project_get"})
      */
     private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"project_get"})
      */
     private $publisher;
 
