@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -17,6 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Project
 {
+    const STATUS = ['PENDING','ONGOING','DONE'];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
