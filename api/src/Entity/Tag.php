@@ -30,9 +30,15 @@ class Tag
      */
     private $projects;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="tags")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,34 @@ class Tag
         if ($this->projects->contains($project)) {
             $this->projects->removeElement($project);
             $project->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeTag($this);
         }
 
         return $this;

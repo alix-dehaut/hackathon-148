@@ -12,7 +12,7 @@ use Faker\Factory;
 
 class ProjectFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const ARBITRARY_NBR_PROJECT= 10;
+    public const ARBITRARY_NBR_PROJECT= 20;
     public const PREFIX_PROJECT_NAME = "Project-";
     private $status = ['PENDING','ONGOING','DONE'];
 
