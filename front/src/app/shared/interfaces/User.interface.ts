@@ -6,4 +6,5 @@ export interface User {
   email: string,
   roles?: string[]
   projects?: string[]
+  isAdmin?: boolean
 }
