@@ -37,17 +37,19 @@ class Project
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $publisher;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="project")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $projectUsers;
 
