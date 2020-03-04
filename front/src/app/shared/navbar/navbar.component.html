@@ -1,8 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>ADW</span>
+    <span [routerLink]="['/']">ADW</span>
     <div class="links">
-      <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Backoffice</button>
+      <ng-container *ngIf="isLogged(); else notLogged">
+        <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Backoffice</button>
+        <button mat-raised-button color="accent" (click)="logout()">Déconnexion</button>
+        <span>{{authService.getLoggedUser()}}</span>
+      </ng-container>
+      <ng-template #notLogged>
+        <button mat-raised-button routerLinkActive="active" color="accent" [routerLink]="['/connexion']">Connexion</button>
+      </ng-template>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -6,12 +6,14 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AuthGuard } from './authentication/auth.guard';
+import { AnonymousGuard } from './authentication/anonymous.guard';
 
 
 const routes: Routes = [
   {
     path: 'connexion',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AnonymousGuard]
   },
   {
     path: 'inscription',

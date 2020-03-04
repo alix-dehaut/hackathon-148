@@ -2,81 +2,56 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
-import { TokensMock } from './mocks/Tokens.mock';
-import { Tokens } from './interfaces/Tokens.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private loggedUser: string;
+  private loggedUser;
+  private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
 
   login(user: { email: string, password: string }): Observable<boolean> {
-    return this.http.get<Tokens>('https://localhost:8443/api/login_check', {params: user})
+    return this.http.post<{token: string}>('https://localhost:8443/api/login_check', {email: user.email, password: user.password})
       .pipe(
-        tap(console.log),
-        tap(tokens => this.doLoginUser(user.email, tokens)),
+        tap(token => this.doLoginUser(token.token)),
         mapTo(true),
         catchError(error => {
-          alert(error.error);
+          console.error(error.error);
           return of(false);
         }));
   }
 
   logout() {
-    return of(true).pipe(
-      tap(() => this.doLogoutUser()),
-      mapTo(true),
-      catchError(error => {
-        alert(error.error);
-        return of(false);
-      }));
+    this.loggedUser = null;
+    this.removeToken();
   }
 
   isLoggedIn() {
     return !!this.getJwtToken();
   }
 
-  refreshToken() {
-    return of(TokensMock).pipe(tap((tokens: Tokens) => {
-      this.storeJwtToken(tokens.jwt);
-    }));
-  }
-
   getJwtToken() {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private doLoginUser(username: string, tokens: Tokens) {
-    this.loggedUser = username;
-    this.storeTokens(tokens);
+  getLoggedUser() {
+    return this.loggedUser;
   }
 
-  private doLogoutUser() {
-    this.loggedUser = null;
-    this.removeTokens();
-  }
-
-  private getRefreshToken() {
-    return localStorage.getItem(this.REFRESH_TOKEN);
+  private doLoginUser(token: string) {
+    this.loggedUser = this.jwtHelper.decodeToken(token);
+    this.storeJwtToken(token);
   }
 
   private storeJwtToken(jwt: string) {
     localStorage.setItem(this.JWT_TOKEN, jwt);
   }
 
-  private storeTokens(tokens: Tokens) {
-    localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
-    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
-  }
-
-  private removeTokens() {
+  private removeToken() {
     localStorage.removeItem(this.JWT_TOKEN);
-    localStorage.removeItem(this.REFRESH_TOKEN);
   }
 }
