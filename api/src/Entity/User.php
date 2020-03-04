@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="user_account")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ApiResource()
  */
 class User implements UserInterface
 {
