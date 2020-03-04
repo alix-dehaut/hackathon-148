@@ -28,9 +28,30 @@ p {
 #connection {
     height: 200px;
     width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
-.paragraph-container {
-    & > h2 {
-        margin-top: 0;
-    }
+.flex-direction-column {
+    flex-direction: column;
+}
+.secondary-color {
+    background-color: #D2E1DF;
+    height: 100%;
+    width: 100%;
+}
+.white-color {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+#personnat {
+    height: 200px;
+    width: 200px;
+    border-right: solid;
+    border-right-color: rgb(255, 230, 0);
+}
+#worldwide{
+    height: 200px;
+    width: 200px;
 }
