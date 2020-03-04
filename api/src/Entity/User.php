@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="user_account")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ApiResource()
  */
@@ -26,6 +27,8 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+
+    private $plain_password;
 
     /**
      * @ORM\Column(type="json")
@@ -190,6 +193,18 @@ class User implements UserInterface
                 $projectUser->setAgent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plain_password;
+    }
+
+    public function setPlainPassword(string $plain_password): self
+    {
+        $this->plain_password = $plain_password;
 
         return $this;
     }
