@@ -27,6 +27,7 @@ class UserFixtures extends Fixture
             $user->setEmail($faker->email);
             $user->setPlainPassword('password');
             $user->setRoles($faker->randomElements($this->roles, $count=1));
+            $user->setIsAdmin($faker->randomElement([true, false]));
 
             $this->addReference(self::PREFIX_USER_NAME.$i, $user);
 
