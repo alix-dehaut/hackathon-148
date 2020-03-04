@@ -16,10 +16,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: { username: string, password: string }): Observable<boolean> {
-    return of(TokensMock)
+  login(user: { email: string, password: string }): Observable<boolean> {
+    return this.http.get<Tokens>('https://localhost:8443/api/login_check', {params: user})
       .pipe(
-        tap(tokens => this.doLoginUser(user.username, tokens)),
+        tap(console.log),
+        tap(tokens => this.doLoginUser(user.email, tokens)),
         mapTo(true),
         catchError(error => {
           alert(error.error);

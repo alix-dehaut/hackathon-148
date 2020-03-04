@@ -37,6 +37,7 @@ class Project
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="projects")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tags;
 

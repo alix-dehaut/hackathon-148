@@ -7,6 +7,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
+import { MatFormFieldModule, MatButtonModule, MatInputModule, MatCardModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +16,12 @@ import { AuthService } from './auth.service';
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
     {
