@@ -1,0 +1,36 @@
+.section-white {
+    background-color: #fff;
+    height: 100%;
+}
+.section-beige {
+    background-color: #F6F3EF;
+    height: 100%;
+}
+p {
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+#team_spirit {
+    height: 200px;
+    width: 200px;
+    margin-left: -20px;
+}
+#connection {
+    height: 200px;
+    width: 100%;
+}
+.paragraph-container {
+    & > h2 {
+        margin-top: 0;
+    }
+}
