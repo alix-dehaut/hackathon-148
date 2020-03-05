@@ -23,7 +23,6 @@ export class ProjectsService {
   }
 
   editProject(project: Project) {
-    console.log(project)
     const headers = new HttpHeaders().set('Content-Type', 'application/merge-patch+json');
     return this.http.patch<User>(`${this.baseUrl}/projects/${project.id}`, project, {headers});
   }

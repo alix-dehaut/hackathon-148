@@ -7,7 +7,7 @@
       <p>{{project.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [routerLink]="['show-project/' + project.id]">Consulter</button>
+      <button mat-raised-button class="orange-button" [routerLink]="['show-project/' + project.id]">Consulter</button>
       <button mat-raised-button [routerLink]="['edit-project/' + project.id]">Editer</button>
     </mat-card-actions>
   </mat-card>

@@ -22,7 +22,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button [routerLink]="['show-user/' + element.id]">Consulter</button>
+      <button mat-raised-button class="orange-button" [routerLink]="['show-user/' + element.id]">Consulter</button>
       <button mat-raised-button [routerLink]="['edit-user/' + element.id]">Editer</button>
     </td>
   </ng-container>
