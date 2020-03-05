@@ -9,8 +9,24 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { MatFormFieldModule, MatButtonModule, MatInputModule, MatCardModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
+export function minlengthValidationMessage(err, field) {
+  return `La longeur minimum est de ${field.templateOptions.minLength} caractères`;
+}
 
+export function maxlengthValidationMessage(err, field) {
+  return `La longeur maximum est de ${field.templateOptions.maxLength} characters`;
+}
+
+export function minValidationMessage(err, field) {
+  return `La valeur doit être supérieure à ${field.templateOptions.min}`;
+}
+
+export function maxValidationMessage(err, field) {
+  return `La valeur doit être inférieur à ${field.templateOptions.max}`;
+}
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
@@ -21,7 +37,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot({
+      validationMessages: [
+        { name: 'required', message: 'Ce champ est requis' },
+        { name: 'minlength', message: minlengthValidationMessage },
+        { name: 'maxlength', message: maxlengthValidationMessage },
+        { name: 'min', message: minValidationMessage },
+        { name: 'max', message: maxValidationMessage },
+      ],
+    }),
+    FormlyMaterialModule
   ],
   providers: [
     {
