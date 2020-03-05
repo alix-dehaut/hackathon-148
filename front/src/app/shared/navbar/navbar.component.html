@@ -2,7 +2,9 @@
   <mat-toolbar-row>
     <a [routerLink]="['/']"><img src="assets/logo.png" alt="ADW"></a>
     <div class="links">
-
+        <button class="grey-color" mat-button routerLinkActive="active">
+           <a href="#section1">test</a>
+        </button>
       <ng-container *ngIf="isLogged(); else notLogged">
         <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Mon espace</button>
         <button mat-raised-button class="orange-button" (click)="logout()">Déconnexion</button>

@@ -48,13 +48,14 @@ export class RegisterComponent {
 			key: 'plainPassword',
 			type: 'input',
 			templateOptions: {
-			  label: 'Mot de passe',
-			  minLength: 8,
-			  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$/
+			type: 'password',
+			label: 'Mot de passe',
+			minLength: 8,
+			pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$/
 			},
 			validation: {
 				messages: {
-				  pattern: (error, field: FormlyFieldConfig) => `"${field.formControl.value}" n'est pas un mot de passe valide`,
+				  pattern: (error, field: FormlyFieldConfig) => `Le mot de passe n'est pas valide, il faut 10 caractères, une majuscule, un chiffre et un caractère spécial`,
 				},
 			  },
 		  }
