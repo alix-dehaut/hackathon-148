@@ -72,7 +72,7 @@ export class EditProjectComponent implements OnInit {
 
   onSubmit(project: Project) {
     this.projectsService.editProject(project).subscribe(
-      project => this.router.navigate(['backoffice/show-project/' + project.id])
+      project => this.router.navigate(['/backoffice/show-project/' + project.id])
     )
   }
 
