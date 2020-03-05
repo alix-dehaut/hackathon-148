@@ -2,10 +2,15 @@
   justify-content: space-between;
 }
 .active {
-  background-color: #344398;
+  background-color: rgb(164, 175, 174);
 }
 .navbar {
   position: fixed;
   top:0;
   z-index: 10;
+  background-color: #D2E1DF;
+  color: #000;
+}
+img {
+  height: 64px;
 }

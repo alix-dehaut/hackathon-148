@@ -1,13 +1,14 @@
 <mat-toolbar color="primary" class="navbar">
   <mat-toolbar-row>
-    <span [routerLink]="['/']">ADW</span>
+    <a [routerLink]="['/']"><img src="assets/logo.png" alt="ADW"></a>
     <div class="links">
+
       <ng-container *ngIf="isLogged(); else notLogged">
-        <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Backoffice</button>
-        <button mat-raised-button color="accent" (click)="logout()">Déconnexion</button>
+        <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Mon espace</button>
+        <button mat-raised-button class="orange-button" (click)="logout()">Déconnexion</button>
       </ng-container>
       <ng-template #notLogged>
-        <button mat-raised-button routerLinkActive="active" color="accent" [routerLink]="['/connexion']">Connexion</button>
+        <button mat-raised-button routerLinkActive="active" class="orange-button" [routerLink]="['/connexion']">Connexion</button>
       </ng-template>
     </div>
   </mat-toolbar-row>
