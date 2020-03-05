@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/interfaces/Project.interface';
+import { ProjectsService } from 'src/app/shared/services/projects.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,13 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShowProjectComponent implements OnInit {
   private project: Project;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private projectsService: ProjectsService ) { }
 
   ngOnInit() {
-    this.project = {
-      ...this.route.snapshot.data.project,
-      tags: this.route.snapshot.data.project.tags.map(tag => tag.label)
-    };
+    this.activatedRoute.data.subscribe(
+      (data: {project: Project}) => this.project = data.project
+    )
   }
 
 }

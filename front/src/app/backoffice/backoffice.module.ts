@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ShowProjectComponent } from './projects/show-project/show-project.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 
 export function minlengthValidationMessage(err, field) {
   return `La longeur minimum est de ${field.templateOptions.minLength} caractères`;
@@ -33,7 +34,7 @@ export function maxValidationMessage(err, field) {
   return `La valeur doit être inférieur à ${field.templateOptions.max}`;
 }
 @NgModule({
-  declarations: [DashboardComponent, ProjectListComponent, AgentListComponent, EditUserComponent, ShowUserComponent, ShowProjectComponent],
+  declarations: [DashboardComponent, ProjectListComponent, AgentListComponent, EditUserComponent, ShowUserComponent, ShowProjectComponent, EditProjectComponent],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
