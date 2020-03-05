@@ -1,11 +1,11 @@
-.section-white {
-    background-color: #fff;
-    height:100vh;
-}
-.section-beige {
+.landing-page{
     background-color: #F6F3EF;
-    height: 100vh;
 }
+.section {
+    height:100%;
+    // display:contents;
+}
+
 p {
     margin: 0;
 }
@@ -18,26 +18,133 @@ p {
     justify-content: center;
     align-items: center;
     height: 100%;
-  }
+    h1 {
+        font-size: 3em;
+        margin-top: 0;
+    }
+    p { font-size: 2em; }
+    &--success {
+        height: 100vh;
+        h1 {
+            font-size: 3em;
+            margin-top: 0;
+        }
+        p { font-size: 2em; }
+    }
+    &--whoAreWe {
+        height: 100vh;
+        background-color: #D2E1DF;
+        & > .image-container {
+            flex-basis: 75%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            & > img {
+                height: 440px;
 
+            }
+        }
+        & > .text-container {
+            flex-basis: 45%;
+            border-left: solid;
+            border-left-width: 15px;
+            border-left-color: rgb(255, 230, 0);
+            background-color: #F6F3EF;
+            padding: 0 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+    }
+    &--expertise {
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        padding: 60px 0;
+        .flex-container {
+            .boxing {
+                margin: 10px;
+                flex-basis: 24%;
+                &--green {
+                    background-color: #D2E1DF;
+                }
+            }
+        }
+    }
+    &--project {
+        flex-direction: column;
+        align-items: center;
+        .image-container {
+            background-color: #D2E1DF;
+            width: 100%;
+            padding: 20px 0;
+        }
+        .text-container {
+            padding: 30px 0;
+        }
+    }
+    &--join {
+        flex-direction: row;
+        .text-container {
+            flex-basis: 40%;
+            p { font-size: 2em;}
+            padding: 20px 100px;
+        }
+        .image-container {
+            flex-basis: 60%;
+            height: 100vh;
+            background-color: #D2E1DF;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+  }
+.title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.social-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    height: 20vh;
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin: 0 5px;
+        }
+    }
+    img {
+        width: 32px;
+        height: 32px;
+    }
+}
 #team_spirit {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 350px;
     margin-left: -20px;
 }
 #connection {
-    height: 200px;
+    height: 340px;
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 .flex-direction-column {
     flex-direction: column;
-}
-.secondary-color {
-    background-color: #D2E1DF;
-    height: 100%;
-    width: 100%;
 }
 .secondary-color-limited{
     background-color: #D2E1DF;
@@ -54,19 +161,16 @@ p {
     width: 100%;
 }
 #personnat {
-    height: 200px;
-    width: 200px;
-    border-right: solid;
-    border-right-color: rgb(255, 230, 0);
+    height: 75vh;
+    width: 600px;
 }
 #worldwide{
-    height: 200px;
-    width: 200px;
+    width: 500px;
 }
 .flex-container{
     display: flex;
-    height: auto;
     flex-wrap: wrap;
+    flex-direction: row;
     align-content: space-around;
     justify-content: center;
 }
