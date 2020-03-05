@@ -2,8 +2,15 @@
   <mat-card *ngIf="user">
     <mat-card-content>
       <h1>{{user.firstname}} {{user.lastname}}</h1>
-      <h2>{{user.email}}</h2>
-      <h3>{{user.isAdmin}}</h3>
+      <h3>Email : {{user.email}}</h3>
+      <h3>Administrateur : {{user.isAdmin ? 'Oui' : 'Non'}}</h3>
+      <h3>Statut : {{user.status}}</h3>
     </mat-card-content>
   </mat-card>
+</div>
+<div class="container">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(model)">
+    <formly-form [model]="model" [fields]="formConfig" [form]="formGroup"></formly-form>
+    <button type="submit" class="btn btn-primary submit-button">Submit</button>
+  </form>
 </div>

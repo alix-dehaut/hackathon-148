@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ProjectUserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class ProjectUser
 {
@@ -80,5 +81,12 @@ class ProjectUser
         $this->agent = $agent;
 
         return $this;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDefaultStatus()
+    {
+        $this->status = 'pending';
     }
 }

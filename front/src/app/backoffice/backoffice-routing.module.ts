@@ -6,7 +6,8 @@ import { ShowUserComponent } from './users/show-user/show-user.component';
 import { UserResolver } from './users/user.resolver';
 import { ShowProjectComponent } from './projects/show-project/show-project.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
-import { ProjectResolver } from './projects/user.resolver';
+import { ProjectResolver } from './projects/project.resolver';
+import { ProjectsResolver } from './projects/projects.resolver';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
     path: 'show-user/:id',
     component: ShowUserComponent,
     resolve: {
-      user: UserResolver
+      user: UserResolver,
+      projects: ProjectsResolver
     }
   },
   {
@@ -49,7 +51,8 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     UserResolver,
-    ProjectResolver
+    ProjectResolver,
+    ProjectsResolver
   ]
 })
 export class BackofficeRoutingModule { }
