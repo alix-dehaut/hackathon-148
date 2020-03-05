@@ -7,14 +7,5 @@ import { tap } from 'rxjs/operators';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
-
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    this.http.get('https://localhost:8443/projects').subscribe(
-      result => console.log(result)
-    )
-  }
-
+export class LandingPageComponent {
 }

@@ -5,18 +5,64 @@ import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectListComponent } from './dashboard/project-list/project-list.component';
 import { SharedModule } from '../shared/shared.module';
-import { MatTabsModule, MatCardModule } from '@angular/material';
+import { MatTabsModule, MatCardModule, MatButtonModule, MatIconModule, MatTableModule, MatSortModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule } from '@angular/material';
 import { ProjectsComponent } from './projects/projects.component';
+import { AgentListComponent } from './dashboard/agent-list/agent-list.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { ShowUserComponent } from './users/show-user/show-user.component';
+import { UserResolver } from './users/user.resolver';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
+export function minlengthValidationMessage(err, field) {
+  return `La longeur minimum est de ${field.templateOptions.minLength} caractères`;
+}
 
+export function maxlengthValidationMessage(err, field) {
+  return `La longeur maximum est de ${field.templateOptions.maxLength} characters`;
+}
+
+export function minValidationMessage(err, field) {
+  return `La valeur doit être supérieure à ${field.templateOptions.min}`;
+}
+
+export function maxValidationMessage(err, field) {
+  return `La valeur doit être inférieur à ${field.templateOptions.max}`;
+}
 @NgModule({
-  declarations: [DashboardComponent, ProjectListComponent, ProjectsComponent],
+  declarations: [DashboardComponent, ProjectListComponent, ProjectsComponent, AgentListComponent, EditUserComponent, ShowUserComponent],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
+    RouterModule,
     SharedModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+    MatTableModule,
+    MatSortModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot({
+      validationMessages: [
+        { name: 'required', message: 'Ce champ est requis' },
+        { name: 'minlength', message: minlengthValidationMessage },
+        { name: 'maxlength', message: maxlengthValidationMessage },
+        { name: 'min', message: minValidationMessage },
+        { name: 'max', message: maxValidationMessage },
+      ],
+    }),
+    FormlyMaterialModule
+  ],
+  providers: [
+    UserResolver
   ]
 })
 export class BackofficeModule { }

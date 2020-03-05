@@ -1,0 +1,9 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit(user)">
+    <formly-form [model]="user" [model]="user" [fields]="userFormConfig">
+      <button mat-raised-button color="primary" type="submit">
+        Submit
+      </button>
+    </formly-form>
+  </form>
+</div>

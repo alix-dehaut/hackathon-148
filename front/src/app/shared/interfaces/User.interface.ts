@@ -1,9 +1,10 @@
 export interface User {
-  userId: number,
+  id: number,
   username?: string,
   firstname?: string,
   lastname?: string
   email: string,
   roles?: string[]
   projects?: string[]
+  isAdmin?: boolean
 }

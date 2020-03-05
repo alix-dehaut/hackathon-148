@@ -8,11 +8,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   constructor(public authService: AuthService, private router:Router) { }
-  ngOnInit() {
-    console.log(this.authService.getLoggedUser());
-  }
 
   logout() {
     this.authService.logout()

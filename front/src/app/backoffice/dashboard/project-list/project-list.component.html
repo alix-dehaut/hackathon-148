@@ -1,10 +1,19 @@
-<ng-container *ngFor="let project of projects">
-  <mat-card>
+<div class="card-container">
+  <mat-card *ngFor="let project of projects">
     <mat-card-header>
-      {{project.name}}
+      <mat-card-title>{{project.name}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <pre>{{project | json}}</pre>
+      <p>{{project.description}}</p>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Consulter</button>
+      <button mat-raised-button>Editer</button>
+      <button mat-raised-button color="warn">
+        <i class="material-icons">
+        delete_forever
+        </i>
+      </button>
+    </mat-card-actions>
   </mat-card>
-</ng-container>
+</div>
