@@ -15,7 +15,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="user_account")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"user_get"}}
+ * )
  */
 class User implements UserInterface
 {
@@ -23,11 +25,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"user_get", "project_get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"user_get"})
      */
     private $email;
 
@@ -35,6 +39,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user_get"})
      */
     private $roles = [];
 
@@ -45,36 +50,43 @@ class User implements UserInterface
     private $password;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="agent", orphanRemoval=true)
+     * @Groups({"user_get"})
      */
     private $projectUsers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="publisher", orphanRemoval=true)
+     * @Groups({"user_get"})
      */
     private $projects;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"project_get", "user_get"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"project_get", "user_get"})
      */
     private $lastname;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="users")
+     * @Groups({"user_get"})
      */
     private $tags;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"user_get"})
      */
     private $isAdmin;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user_get"})
      */
     private $status;
 

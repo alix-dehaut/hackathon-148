@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -29,12 +30,14 @@ class ProjectUser
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="projectUsers")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"user_get"})
      */
     private $project;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projectUsers")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"project_get"})
      */
     private $agent;
 
