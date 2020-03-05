@@ -8,7 +8,8 @@
         <button mat-raised-button class="orange-button" (click)="logout()">Déconnexion</button>
       </ng-container>
       <ng-template #notLogged>
-        <button mat-raised-button routerLinkActive="active" class="orange-button" [routerLink]="['/connexion']">Connexion</button>
+        <button mat-raised-button routerLinkActive="active" class="orange-button margin" [routerLink]="['/inscription']">Inscription</button>
+        <button mat-raised-button routerLinkActive="active" class="orange-button margin" [routerLink]="['/connexion']">Connexion</button>
       </ng-template>
     </div>
   </mat-toolbar-row>
