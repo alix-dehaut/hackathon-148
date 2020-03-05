@@ -5,6 +5,7 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ShowUserComponent } from './users/show-user/show-user.component';
 import { UserResolver } from './users/user.resolver';
 import { ShowProjectComponent } from './projects/show-project/show-project.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 import { ProjectResolver } from './projects/user.resolver';
 
 
@@ -21,6 +22,13 @@ const routes: Routes = [
     component: ShowUserComponent,
     resolve: {
       user: UserResolver
+    }
+  },
+  {
+    path: 'edit-project/:id',
+    component: EditProjectComponent,
+    resolve: {
+      project: ProjectResolver
     }
   },
   {
