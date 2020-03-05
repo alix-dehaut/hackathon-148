@@ -24,13 +24,13 @@ class Project
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"project_get"})
+     * @Groups({"project_get","user_get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"project_get", "project_write"})
+     * @Groups({"project_get", "project_write","user_get"})
      */
     private $name;
 
@@ -42,7 +42,7 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"project_get", "project_write"})
+     * @Groups({"project_get", "project_write","user_get"})
      */
     private $status;
 
@@ -63,6 +63,7 @@ class Project
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="project")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"project_get"})
      */
     private $projectUsers;
 

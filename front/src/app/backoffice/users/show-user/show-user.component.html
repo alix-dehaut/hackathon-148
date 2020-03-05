@@ -5,12 +5,19 @@
       <h3>Email : {{user.email}}</h3>
       <h3>Administrateur : {{user.isAdmin ? 'Oui' : 'Non'}}</h3>
       <h3>Statut : {{user.status}}</h3>
+      <hr>
+      <span>Liste des projets de l'agent</span>
+      <ul>
+        <li *ngFor="let project of user.projectUsers">
+          <a [routerLink]="['/backoffice/show-project/' + project.project.id]">{{project.project.name}}</a>
+        </li>
+      </ul>
     </mat-card-content>
   </mat-card>
 </div>
 <div class="container">
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit(model)">
     <formly-form [model]="model" [fields]="formConfig" [form]="formGroup"></formly-form>
-    <button type="submit" class="btn btn-primary submit-button">Submit</button>
+    <button mat-raised-button type="submit" class="btn btn-primary submit-button">Submit</button>
   </form>
 </div>
