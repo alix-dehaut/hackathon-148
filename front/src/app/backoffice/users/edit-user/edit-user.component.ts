@@ -10,7 +10,6 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-  private originalUser: User;
   public user: User;
   public userForm: FormGroup = new FormGroup({});
   public userFormConfig: FormlyFieldConfig[] = [
@@ -50,7 +49,6 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
-    this.originalUser = this.route.snapshot.data.user;
   }
 
   onSubmit(user: User) {

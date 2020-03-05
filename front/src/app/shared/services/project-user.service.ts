@@ -10,7 +10,6 @@ export class ProjectUserService {
   constructor(private http: HttpClient) {}
 
   createProjectUser(projectUser: {agent: string, project: string}) {
-    console.log(projectUser);
     const headers = new HttpHeaders().set('Content-type', 'application/json');
     return this.http.post(`${this.baseUrl}/project_users`, projectUser, {headers});
   }

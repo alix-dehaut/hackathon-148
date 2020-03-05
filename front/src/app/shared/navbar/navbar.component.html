@@ -2,13 +2,25 @@
   <mat-toolbar-row>
     <a [routerLink]="['/']"><img src="assets/logo.png" alt="ADW"></a>
     <div class="links">
-
+        <button class="grey-color" mat-button routerLinkActive="active">
+            <a href="#section2">Qui sommes nous ?</a>
+         </button>
+         <button class="grey-color" mat-button routerLinkActive="active">
+            <a href="#section3">Expertises</a>
+         </button>
+         <button class="grey-color" mat-button routerLinkActive="active">
+            <a href="#section4">Réalisations</a>
+         </button>
+         <button class="grey-color" mat-button routerLinkActive="active">
+            <a href="#section5">Nous rejoindre ?</a>
+         </button>
       <ng-container *ngIf="isLogged(); else notLogged">
         <button mat-button routerLinkActive="active" [routerLink]="['/backoffice']">Mon espace</button>
         <button mat-raised-button class="orange-button" (click)="logout()">Déconnexion</button>
       </ng-container>
       <ng-template #notLogged>
-        <button mat-raised-button routerLinkActive="active" class="orange-button" [routerLink]="['/connexion']">Connexion</button>
+        <button mat-raised-button routerLinkActive="active" class="orange-button margin" [routerLink]="['/inscription']">Inscription</button>
+        <button mat-raised-button routerLinkActive="active" class="orange-button margin" [routerLink]="['/connexion']">Connexion</button>
       </ng-template>
     </div>
   </mat-toolbar-row>
