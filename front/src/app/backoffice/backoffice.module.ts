@@ -12,11 +12,11 @@ import { ShowUserComponent } from './users/show-user/show-user.component';
 import { UserResolver } from './users/user.resolver';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ShowProjectComponent } from './projects/show-project/show-project.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { AddProjectComponent } from './projects/add-project/add-project.component';
 
 export function minlengthValidationMessage(err, field) {
   return `La longeur minimum est de ${field.templateOptions.minLength} caractères`;
@@ -34,7 +34,7 @@ export function maxValidationMessage(err, field) {
   return `La valeur doit être inférieur à ${field.templateOptions.max}`;
 }
 @NgModule({
-  declarations: [DashboardComponent, ProjectListComponent, AgentListComponent, EditUserComponent, ShowUserComponent, ShowProjectComponent, EditProjectComponent],
+  declarations: [DashboardComponent, ProjectListComponent, AgentListComponent, EditUserComponent, ShowUserComponent, ShowProjectComponent, EditProjectComponent, AddProjectComponent],
   imports: [
     CommonModule,
     BackofficeRoutingModule,

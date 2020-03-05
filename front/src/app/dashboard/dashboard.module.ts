@@ -6,11 +6,10 @@ import { MatCardModule } from '@angular/material';
 import { ProjectsComponent } from './projects/projects.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectsService } from '../shared/services/projects.service';
-import { AddProjectComponent } from './add-project/add-project.component';
 
 
 @NgModule({
-  declarations: [ProjectsComponent, AddProjectComponent],
+  declarations: [ProjectsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

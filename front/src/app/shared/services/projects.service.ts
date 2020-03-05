@@ -26,4 +26,8 @@ export class ProjectsService {
     const headers = new HttpHeaders().set('Content-Type', 'application/merge-patch+json');
     return this.http.patch<User>(`${this.baseUrl}/projects/${project.id}`, project, {headers});
   }
+
+  addProject(project: Project) {
+    return this.http.post<Project>(`${this.baseUrl}/projects`, {...project})
+  }
 }

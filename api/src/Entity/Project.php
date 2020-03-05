@@ -41,7 +41,7 @@ class Project
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"project_get", "project_write","user_get"})
      */
     private $status;

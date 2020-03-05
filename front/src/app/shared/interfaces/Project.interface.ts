@@ -1,8 +1,8 @@
 export interface Project {
-  id: number,
+  id?: number,
   name: string,
   description: string,
-  status: string,
-  creatorId: number,
-  tags: string[]
+  status?: string,
+  creatorId?: number,
+  tags?: string[]
 }

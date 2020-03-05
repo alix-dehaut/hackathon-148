@@ -9,12 +9,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./show-project.component.scss']
 })
 export class ShowProjectComponent implements OnInit {
-  private project: Project;
-  constructor(private activatedRoute: ActivatedRoute, private projectsService: ProjectsService ) { }
+  public project: Project;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(
-      (data: {project: Project}) => this.project = data.project
+      (data: {project: Project}) => this.project = {...data.project, tags: data.project.tags.map((tag:any) => tag.label)}
     )
   }
 

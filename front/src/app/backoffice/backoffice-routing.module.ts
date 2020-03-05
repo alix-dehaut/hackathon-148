@@ -8,6 +8,7 @@ import { ShowProjectComponent } from './projects/show-project/show-project.compo
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 import { ProjectResolver } from './projects/project.resolver';
 import { ProjectsResolver } from './projects/projects.resolver';
+import { AddProjectComponent } from './projects/add-project/add-project.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
     resolve: {
       project: ProjectResolver
     }
+  },
+  {
+    path: 'add-project',
+    component: AddProjectComponent
   },
   {
     path: '',

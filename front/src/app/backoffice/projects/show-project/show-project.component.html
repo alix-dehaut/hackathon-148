@@ -6,7 +6,9 @@
     <mat-card-content>
       <p>{{project.description}}</p>
       <p>{{project.status}}</p>
-      <p>{{project.tags.join(', ')}}</p>
+      <p>
+        <span class="tag" *ngFor="let tag of project.tags">{{tag}}</span>
+      </p>
       <hr>
       <span>Liste des agents</span>
       <ul>

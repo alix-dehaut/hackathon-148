@@ -8,4 +8,5 @@ import { Project } from 'src/app/shared/interfaces/Project.interface';
 })
 export class ProjectListComponent {
   @Input() projects:Project[];
+
 }

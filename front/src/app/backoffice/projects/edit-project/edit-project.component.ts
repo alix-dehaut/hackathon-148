@@ -12,17 +12,14 @@ import {map} from "rxjs/operators";
   styleUrls: ['./edit-project.component.scss']
 })
 export class EditProjectComponent implements OnInit {
-  private originalProject: Project;
   public project: Project;
-  private tags;
   public projectForm: FormGroup = new FormGroup({});
   public projectFormConfig: FormlyFieldConfig[];
   constructor(private route: ActivatedRoute, private projectsService: ProjectsService, private router: Router, private tagsService: TagsService) { }
 
   ngOnInit() {
     this.project = this.route.snapshot.data.project;
-    console.log(this.route.snapshot.data);
-    this.originalProject = this.route.snapshot.data.project;
+    this.project = {...this.project, tags: this.project.tags.map(tag => tag['@id'])}
     this.tagsService.getAllTags().pipe(
       map(tags => tags.map(tag => ({label: tag.label, value: tag['@id']}))),
     )
@@ -62,6 +59,7 @@ export class EditProjectComponent implements OnInit {
             type: 'select',
             templateOptions: {
               label: 'Tags',
+              multiple: true,
               options: tags
             }
           }
