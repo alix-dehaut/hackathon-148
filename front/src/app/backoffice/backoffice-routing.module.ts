@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ShowUserComponent } from './users/show-user/show-user.component';
 import { UserResolver } from './users/user.resolver';
+import { ShowProjectComponent } from './projects/show-project/show-project.component';
+import { ProjectResolver } from './projects/user.resolver';
 
 
 const routes: Routes = [
@@ -22,6 +24,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'show-project/:id',
+    component: ShowProjectComponent,
+    resolve: {
+      project: ProjectResolver
+    }
+  },
+  {
     path: '',
     component: DashboardComponent
   }
@@ -31,7 +40,8 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
-    UserResolver
+    UserResolver,
+    ProjectResolver
   ]
 })
 export class BackofficeRoutingModule { }

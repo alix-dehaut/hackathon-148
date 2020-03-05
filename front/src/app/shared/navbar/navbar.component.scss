@@ -4,3 +4,8 @@
 .active {
   background-color: #344398;
 }
+.navbar {
+  position: fixed;
+  top:0;
+  z-index: 10;
+}

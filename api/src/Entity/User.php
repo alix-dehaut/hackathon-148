@@ -43,16 +43,15 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="publisher")
-     */
-    private $projects;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="agent")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectUser", mappedBy="agent", orphanRemoval=true)
      */
     private $projectUsers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="publisher", orphanRemoval=true)
+     */
+    private $projects;
 
     /**
      * @ORM\Column(type="string", length=255)

@@ -24,6 +24,7 @@ class Project
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"project_get"})
      */
     private $id;
 

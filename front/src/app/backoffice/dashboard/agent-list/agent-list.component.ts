@@ -30,4 +30,8 @@ export class AgentListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  // deleteUser(user: User) {
+  //   this.userService.deleteUser(user.id).subscribe()
+  // }
 }

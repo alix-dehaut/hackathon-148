@@ -6,7 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectListComponent } from './dashboard/project-list/project-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatTabsModule, MatCardModule, MatButtonModule, MatIconModule, MatTableModule, MatSortModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule } from '@angular/material';
-import { ProjectsComponent } from './projects/projects.component';
 import { AgentListComponent } from './dashboard/agent-list/agent-list.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ShowUserComponent } from './users/show-user/show-user.component';
@@ -16,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { ShowProjectComponent } from './projects/show-project/show-project.component';
 
 export function minlengthValidationMessage(err, field) {
   return `La longeur minimum est de ${field.templateOptions.minLength} caractères`;
@@ -33,7 +33,7 @@ export function maxValidationMessage(err, field) {
   return `La valeur doit être inférieur à ${field.templateOptions.max}`;
 }
 @NgModule({
-  declarations: [DashboardComponent, ProjectListComponent, ProjectsComponent, AgentListComponent, EditUserComponent, ShowUserComponent],
+  declarations: [DashboardComponent, ProjectListComponent, AgentListComponent, EditUserComponent, ShowUserComponent, ShowProjectComponent],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
