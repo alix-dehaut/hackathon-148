@@ -49,6 +49,8 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
+    delete this.user.projectUsers;
+    delete this.user.projects;
   }
 
   onSubmit(user: User) {

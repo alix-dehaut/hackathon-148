@@ -48,7 +48,7 @@ export class ShowUserComponent implements OnInit {
 
   onSubmit(model) {
     this.projectUserSerivce.createProjectUser(model).subscribe(
-      result => this.router.navigate(['/backoffice/show-user/'+this.user.id+'?refresh=1'])
+      result => location.reload()
     )
   }
 

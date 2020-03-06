@@ -51,7 +51,7 @@ export class RegisterComponent {
 			type: 'password',
 			label: 'Mot de passe',
 			minLength: 8,
-			pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$/
+			pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/
 			},
 			validation: {
 				messages: {

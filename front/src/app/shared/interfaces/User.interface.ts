@@ -1,4 +1,5 @@
 export interface User {
+  projectUsers?: any[];
   id?: number,
   username?: string,
   firstname?: string,
